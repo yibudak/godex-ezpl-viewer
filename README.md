@@ -7,7 +7,7 @@ label, *before* you waste a roll. Online ZPL/EZPL viewers get fonts, sizes, alig
 position wrong because EZPL has several non-obvious rules. This tool implements those rules from a
 careful reverse-engineering of Godex's own tooling and the official EZPL manual.
 
-**▶ Live demo:** `https://<user>.github.io/godex-ezpl-viewer/` *(enable GitHub Pages — see below)*
+**▶ Live demo:** `https://godex-ezpl-viewer.github.io/` *(see "Hosting" below)*
 
 ![viewer](docs/screenshot.png)
 
@@ -84,17 +84,28 @@ your printer's own fonts for an exact match:
 
 ### Hosting on GitHub Pages
 
+**Option A — clean root URL `https://godex-ezpl-viewer.github.io/`** (needs a GitHub *user or
+organization* named `godex-ezpl-viewer`):
+
+1. Create a free org named `godex-ezpl-viewer` (github.com/organizations/plan/new), if the name is free.
+2. In it, create a repo named exactly **`godex-ezpl-viewer.github.io`**.
+3. Push this folder:
+   ```bash
+   git remote add origin https://github.com/godex-ezpl-viewer/godex-ezpl-viewer.github.io.git
+   git push -u origin main
+   ```
+4. For `*.github.io` repos Pages is served from the default branch root automatically; the site is at
+   **`https://godex-ezpl-viewer.github.io/`** within ~1 min.
+
+**Option B — project URL under your own account** `https://<user>.github.io/godex-ezpl-viewer/`:
+
 ```bash
-# in this folder
-git init && git add -A && git commit -m "Godex EZPL Viewer"
-git branch -M main
 git remote add origin https://github.com/<user>/godex-ezpl-viewer.git
 git push -u origin main
 ```
+Then **Settings → Pages → Source: `main` / root**.
 
-Then on GitHub: **Settings → Pages → Source: `main` / root**. The site appears at
-`https://<user>.github.io/godex-ezpl-viewer/`. (A `.nojekyll` file is included so Pages serves the
-HTML untouched.)
+(A `.nojekyll` file is included so Pages serves the HTML untouched.)
 
 ---
 
