@@ -78,7 +78,7 @@ you must compute the X offset yourself (measure the rendered width). Inter-chara
 | Text (`At`,`AT`,`Vt`), Box (`R`), Line (`L`), Table (`H`) | **top-left** |
 | QR (`W`), DataMatrix (`XRB`), PDF417 (`P`), Aztec (`Z`), Maxicode (`M`), Pattern (`Q`) | **bottom-left** — grows **upward** from Y |
 
-The QR bottom-left anchor is the classic surprise: a QR at `y=390` with module size 5 and 33 modules
+The QR bottom-left anchor is easy to get wrong: a QR at `y=390` with module size 5 and 33 modules
 occupies `y = 225 … 390`, not `390 … 555`.
 
 ---

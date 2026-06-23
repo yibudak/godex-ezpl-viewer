@@ -2,10 +2,10 @@
 
 A single-file, **offline**, **dot-accurate** browser previewer for **Godex EZPL** label code.
 
-Paste the raw EZPL you send to the printer and see — pixel for pixel — what should come off the
-label, *before* you waste a roll. Online ZPL/EZPL viewers get fonts, sizes, alignment and the QR
-position wrong because EZPL has several non-obvious rules. This tool implements those rules from a
-careful reverse-engineering of Godex's own tooling and the official EZPL manual.
+Paste the raw EZPL you send to the printer and see what should come off the label, *before* you
+waste a roll. Online ZPL/EZPL viewers get fonts, sizes, alignment and the QR position wrong because
+EZPL has several non-obvious rules. This tool implements those rules by reverse-engineering Godex's
+own tooling and the official EZPL manual.
 
 **▶ Live demo:** https://yibudak.github.io/godex-ezpl-viewer/ *(see "Hosting" below)*
 
@@ -46,8 +46,8 @@ See [`docs/EZPL.md`](docs/EZPL.md) for the full command reference and field-by-f
   UPC-A, ITF (Interleaved 2 of 5), Codabar — verified by decoding with [ZXing](https://github.com/zxing-js/library).
   Rarer symbologies render as correctly-dimensioned placeholders.
 - **1-bit thermal thresholding** so the preview looks like real thermal output (toggleable).
-- **Real-size 1:1** mode with an on-screen ruler so you can calibrate against a physical print —
-  the only true 100% reference.
+- **Real-size 1:1** mode with an on-screen ruler so you can calibrate against a physical print
+  (the only 100% reference).
 - **Bring your own fonts** (see below) for exact glyph matching.
 
 Everything runs locally in your browser. No data leaves the page.
@@ -121,9 +121,9 @@ the extracted proprietary fonts.
 
 ## How it was built
 
-Short version: decompile GoLabel (it's .NET → ILSpy, not IDA) to learn how it turns a design into
-EZPL; confirm the wire format against the official manual; encode QR/barcodes to spec and verify by
-*decoding* them; and — for the resident bitmap fonts — inflate the `GODEX2GCompress` block from
+Decompile GoLabel (it's .NET, so ILSpy rather than IDA) to learn how it turns a design into EZPL;
+confirm the wire format against the official manual; encode QR/barcodes to spec and verify by
+*decoding* them; and, for the resident bitmap fonts, inflate the `GODEX2GCompress` block from
 firmware and reverse the 16×24 glyph layout. The notes live in [`docs/EZPL.md`](docs/EZPL.md).
 
 ## License
