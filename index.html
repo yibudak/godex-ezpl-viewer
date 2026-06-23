@@ -10,12 +10,35 @@
   - AT default font: bundled Noto Serif (SIL OFL) — Noto is the printer's real internal TTF family. 1-bit threshold = thermal look.
   - Bitmap fonts (At): emulated with a system font by default. For pixel-exact glyphs, load YOUR printer's bitmap-font ROM
     (extract it from your own firmware with tools/extract_godex_fonts.py) via "Load bitmap ROM". No proprietary font is bundled.
-  - The only 100% reference is a physical print. MIT-licensed. https://godex-ezpl-viewer.github.io/
+  - The only 100% reference is a physical print. MIT-licensed. https://yibudak.github.io/godex-ezpl-viewer/
 -->
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Godex EZPL Renderer (offline)</title>
+<title>Godex EZPL Viewer — Online EZPL Label Previewer &amp; Renderer</title>
+<meta name="description" content="Free online Godex EZPL viewer: paste your EZPL label code and see exactly what the printer prints — correct fonts, font sizes, QR/barcode placement and alignment, for 203/300/600 dpi. Offline, single-file, open source.">
+<meta name="keywords" content="Godex EZPL, EZPL viewer, EZPL renderer, EZPL preview online, Godex label, EZPL simulator, thermal label preview, Godex printer, label design, barcode, QR code, EZPL command, 203 dpi 300 dpi">
+<meta name="author" content="godex-ezpl-viewer">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#1e1f22">
+<link rel="canonical" href="https://yibudak.github.io/godex-ezpl-viewer/">
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Godex EZPL Viewer">
+<meta property="og:title" content="Godex EZPL Viewer — Online EZPL Label Previewer">
+<meta property="og:description" content="Paste Godex EZPL and see exactly what the printer prints — fonts, sizes, QR &amp; barcode placement, 203/300/600 dpi. Offline, open source.">
+<meta property="og:url" content="https://yibudak.github.io/godex-ezpl-viewer/">
+<meta property="og:image" content="https://yibudak.github.io/godex-ezpl-viewer/docs/screenshot.png">
+<meta property="og:image:width" content="1120">
+<meta property="og:image:height" content="800">
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Godex EZPL Viewer — Online EZPL Label Previewer">
+<meta name="twitter:description" content="Paste Godex EZPL and see exactly what the printer prints. Offline, open source.">
+<meta name="twitter:image" content="https://yibudak.github.io/godex-ezpl-viewer/docs/screenshot.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Godex EZPL Viewer","alternateName":"EZPL Label Previewer","url":"https://yibudak.github.io/godex-ezpl-viewer/","description":"Online Godex EZPL label viewer and renderer. Paste EZPL and see exactly what the printer prints: fonts, sizes, QR and barcode placement, for 203/300/600 dpi. Offline, single-file, open source.","applicationCategory":"DeveloperApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","image":"https://yibudak.github.io/godex-ezpl-viewer/docs/screenshot.png","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
 <style>
   :root{--bg:#1e1f22;--panel:#2b2d31;--ink:#e6e6e6;--accent:#4ea1ff;--line:#3a3d42;}
   *{box-sizing:border-box;} body{margin:0;font:13px/1.45 system-ui,Segoe UI,sans-serif;background:var(--bg);color:var(--ink);}
