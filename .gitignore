@@ -1,0 +1,15 @@
+# extraction output (don't commit extracted proprietary fonts)
+godex_fonts_out/
+*.bitmap_rom.bin
+out/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# node (only used for dev/verification, not shipped)
+node_modules/
+package-lock.json
