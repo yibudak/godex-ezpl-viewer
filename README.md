@@ -17,8 +17,10 @@ command reference: [`docs/EZPL.md`](docs/EZPL.md).
 
 1. Open `index.html` (double-click or host it). No install, no network.
 2. Pick a sample or paste your EZPL.
-3. Set DPI (203/300/600), zoom, and optional 1-bit / grid.
-4. For pixel-exact glyphs, load your printer's bitmap ROM or a `.ttf`.
+3. Use **design** mode to add, select, drag, resize, and edit supported objects; select multiple
+   objects from the list or with Shift/Cmd-click on the label to move them together. The EZPL source
+   is regenerated as you work.
+4. Set DPI (203/300/600), zoom, and optional 1-bit / grid.
 5. For true scale, turn on **real size 1:1** and calibrate against a printed label.
 
 It renders the common commands (`^Q/^QD/^W`, `^L…E`, `At`/`AT`/`ATt` text, `Vt`, `Bt` barcodes,
@@ -27,10 +29,7 @@ rarer ones render as sized placeholders.
 
 ## Fonts
 
-The page ships only open fonts (Noto Serif, SIL OFL). For an exact match, load your printer's own
-fonts: extract them from firmware you own with
-[`tools/extract_godex_fonts.py`](tools/extract_godex_fonts.py), or drop a raw firmware `.bin` into
-the page. No proprietary font data lives in this repo.
+The page ships only open fonts (Noto Serif, SIL OFL). No proprietary font data lives in this repo.
 
 ## License
 
