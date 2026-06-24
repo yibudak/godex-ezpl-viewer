@@ -5,7 +5,9 @@
   - Units: mm->dot is a FIXED 8/12/24 (203/300/600 dpi), NOT 25.4. Object coords/sizes are already in dots.
   - Bitmap font (At): point-based (A6 B8 C10 D12 E14 F18 G24 H30 pt), base_dot=round(pt*dpi/72), scales with DPI.
   - Built-in TrueType (AT): w,h in dots. h(dot) = font pixel height; w==h matches Windows font; m=0 aspect mode.
-  - Anchors (manual): text/R/L/H = TOP-LEFT; QR(W)/Pattern/2D = BOTTOM-LEFT (grows upward) [confirmed by physical print].
+  - Anchors: text/R/L/H/Y(graphic) = TOP-LEFT. QR(W) = TOP-LEFT too on EZ2250i (x,y = top-left, grows DOWN) —
+    the manual's "left-bottom" wording is misleading; physical print places W like text/Y. Pattern/2D placeholder
+    still drawn bottom-left (untested; same fix likely if you use Aztec/DataMatrix).
   - QR: built-in ISO 18004 encoder (verified by decoding with jsQR). 1D: Code128/39/93/EAN13/EAN8/UPC-A/ITF verified by decoding with ZXing.
   - AT default font: bundled Noto Serif (SIL OFL) — Noto is the printer's real internal TTF family. 1-bit threshold = thermal look.
   - Bitmap fonts (At): emulated with a system font by default. For pixel-exact glyphs, load YOUR printer's bitmap-font ROM
@@ -308,14 +310,14 @@ function drawBar(g,o){
 }
 function drawQR(g,o){
   let qr;try{qr=makeQR(o.data,o.ec,o.mask,o.ver);}catch(e){g.fillStyle='#000';g.font='12px Arial';g.textBaseline='top';g.fillText('QR: '+e.message,o.x,o.y-14);return;}
-  const m=o.mul;g.fillStyle='#000';const top=o.y-qr.size*m;   // sol-ALT anchor: yukarı büyür
+  const m=o.mul;g.fillStyle='#000';const top=o.y;   // sol-ÜST ankraj: EZ2250i W'yi yazı/Y gibi sol-üstten AŞAĞI büyütür (manual "left-bottom" yanıltıcı)
   for(let y=0;y<qr.size;y++)for(let x=0;x<qr.size;x++)if(qr.modules[y][x])g.fillRect(o.x+x*m,top+y*m,m,m);
 }
 function drawRect(g,o){const w=o.x1-o.x,h=o.y1-o.y,lr=o.lrw,ub=o.ubw;g.fillStyle='#000';g.fillRect(o.x,o.y,w,ub);g.fillRect(o.x,o.y1-ub,w,ub);g.fillRect(o.x,o.y,lr,h);g.fillRect(o.x1-lr,o.y,lr,h);}
 function drawTable(g,o){g.fillStyle='#000';const W=o.cols*o.cw,H=o.rows*o.rw,lw=o.lw;for(let c=0;c<=o.cols;c++)g.fillRect(o.x+c*o.cw,o.y,lw,H+lw);for(let r=0;r<=o.rows;r++)g.fillRect(o.x,o.y+r*o.rw,W+lw,lw);}
 
 function objExtent(o,dm,meas){
-  if(o.k==='qr')return[o.x+(o._qr?o._qr.size*o.mul:0),o.y];
+  if(o.k==='qr'){const s=o._qr?o._qr.size*o.mul:0;return[o.x+s,o.y+s];}   // top-left: grows down
   if(o.k==='rect'||o.k==='fill')return[Math.max(o.x,o.x1)+1,Math.max(o.y,o.y1)+1];
   if(o.k==='table')return[o.x+o.cols*o.cw+o.lw,o.y+o.rows*o.rw+o.lw];
   if(o.k==='bar'){const e=barcodeFor(o.type,o.data,o.narrow,o.wide);const w=e?e.runs.reduce((a,b)=>a+b,0):(o.wide||o.narrow*2)*10;return[o.x+w,o.y+o.h+(o.readable?Math.round(o.h*0.2)+4:2)];}
