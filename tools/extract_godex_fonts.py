@@ -6,12 +6,10 @@ Godex firmware packages ("DownloadTool" .zip files) contain .BIN images that emb
 
   1. A zlib-compressed bitmap-font ROM, tagged  `GODEX2GCompress,<decompressed_size>\\n` then a
      zlib stream (78 9c ...). This holds the resident A..H bitmap fonts (16-wide cells, custom
-     character order). Load the *decompressed* output in the viewer's "Bitmap ROM" box for
-     pixel-exact `At` glyphs.
+     character order).
 
   2. An "internal TTF" image: a sequence of  `~H,TTF,<reg><name>,<size>\\r<raw TTF bytes>` blocks.
-     These are the scalable fonts (Noto family on recent firmware). The Latin one can be loaded
-     as the viewer's "AT font".
+     These are the scalable fonts (Noto family on recent firmware).
 
 Usage:
     python extract_godex_fonts.py <file-or-folder> [-o OUTDIR]
@@ -79,7 +77,7 @@ def process(path, outdir):
         out = os.path.join(outdir, base + ".bitmap_rom.bin")
         with open(out, "wb") as f:
             f.write(rom)
-        print(f"  bitmap-font ROM  -> {out}  ({len(rom)} bytes)  [load this in 'Bitmap ROM']")
+        print(f"  bitmap-font ROM  -> {out}  ({len(rom)} bytes)")
         found = True
 
     for reg, name, blob in find_ttfs(data):
